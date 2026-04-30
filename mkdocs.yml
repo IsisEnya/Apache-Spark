@@ -1,0 +1,19 @@
+site_name: Trabalho Apache Spark com Delta Lake e Apache Iceberg
+site_description: Documentacao do trabalho academico com PySpark, Delta Lake e Apache Iceberg
+theme:
+  name: material
+  language: pt-BR
+
+nav:
+  - Inicio: index.md
+  - Apache Spark: apache-spark.md
+  - Delta Lake: delta-lake.md
+  - Apache Iceberg: apache-iceberg.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences

@@ -1,0 +1,11 @@
+id_venda,id_cliente,nome_cliente,cidade,id_produto,nome_produto,categoria,data_venda,quantidade,preco_unitario,status_pagamento
+1001,1,Ana Souza,Criciuma,101,Notebook IdeaPad,Eletronicos,2026-03-01,1,3500.00,pago
+1002,2,Bruno Lima,Florianopolis,102,Mouse Sem Fio,Perifericos,2026-03-02,2,120.00,pago
+1003,3,Carla Mendes,Tubarao,103,Teclado Mecanico,Perifericos,2026-03-03,1,280.00,pendente
+1004,1,Ana Souza,Criciuma,104,Monitor 24,Eletronicos,2026-03-04,1,899.90,pago
+1005,4,Diego Rocha,Joinville,105,Headset USB,Perifericos,2026-03-05,1,199.90,pago
+1006,5,Elisa Martins,Blumenau,101,Notebook IdeaPad,Eletronicos,2026-03-06,1,3500.00,pendente
+1007,2,Bruno Lima,Florianopolis,106,Webcam Full HD,Perifericos,2026-03-07,1,249.90,pago
+1008,6,Fabio Alves,Lages,107,Cadeira Office,Mobiliario,2026-03-08,1,799.00,cancelado
+1009,3,Carla Mendes,Tubarao,108,SSD 1TB,Componentes,2026-03-09,2,420.00,pago
+1010,7,Gabriela Costa,Itajai,102,Mouse Sem Fio,Perifericos,2026-03-10,1,120.00,pendente

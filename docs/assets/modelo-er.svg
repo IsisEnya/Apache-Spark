@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420">
+  <style>
+    .title { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+    .label { font: 600 16px Arial, sans-serif; fill: #0f172a; }
+    .text { font: 14px Arial, sans-serif; fill: #334155; }
+    .box { fill: #f8fafc; stroke: #1e293b; stroke-width: 2; rx: 14; }
+    .pk { fill: #0f766e; }
+    .fk { fill: #c2410c; }
+    .line { stroke: #475569; stroke-width: 2.5; fill: none; }
+  </style>
+
+  <text x="490" y="38" text-anchor="middle" class="title">Modelo ER do cenario de vendas</text>
+
+  <rect x="70" y="90" width="240" height="210" class="box" rx="16" />
+  <text x="190" y="125" text-anchor="middle" class="label">clientes</text>
+  <text x="95" y="165" class="text">PK id_cliente</text>
+  <text x="95" y="195" class="text">nome_cliente</text>
+  <text x="95" y="225" class="text">cidade</text>
+  <circle cx="82" cy="160" r="6" class="pk" />
+  <circle cx="82" cy="190" r="6" fill="#64748b" />
+  <circle cx="82" cy="220" r="6" fill="#64748b" />
+
+  <rect x="670" y="90" width="240" height="210" class="box" rx="16" />
+  <text x="790" y="125" text-anchor="middle" class="label">produtos</text>
+  <text x="695" y="165" class="text">PK id_produto</text>
+  <text x="695" y="195" class="text">nome_produto</text>
+  <text x="695" y="225" class="text">categoria</text>
+  <text x="695" y="255" class="text">preco_unitario</text>
+  <circle cx="682" cy="160" r="6" class="pk" />
+  <circle cx="682" cy="190" r="6" fill="#64748b" />
+  <circle cx="682" cy="220" r="6" fill="#64748b" />
+  <circle cx="682" cy="250" r="6" fill="#64748b" />
+
+  <rect x="340" y="170" width="300" height="200" class="box" rx="16" />
+  <text x="490" y="205" text-anchor="middle" class="label">vendas</text>
+  <text x="365" y="245" class="text">PK id_venda</text>
+  <text x="365" y="275" class="text">FK id_cliente</text>
+  <text x="365" y="305" class="text">FK id_produto</text>
+  <text x="365" y="335" class="text">data_venda, quantidade, status</text>
+  <circle cx="352" cy="240" r="6" class="pk" />
+  <circle cx="352" cy="270" r="6" class="fk" />
+  <circle cx="352" cy="300" r="6" class="fk" />
+  <circle cx="352" cy="330" r="6" fill="#64748b" />
+
+  <path d="M310 210 C340 210, 340 250, 340 250" class="line" />
+  <path d="M640 250 C660 250, 660 210, 670 210" class="line" />
+
+  <text x="325" y="205" class="text">1:N</text>
+  <text x="640" y="205" class="text">1:N</text>
+</svg>

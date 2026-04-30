@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+site/
+spark-warehouse/
+metastore_db/
+derby.log
+
+warehouse/delta/*
+!warehouse/delta/.gitkeep
+warehouse/iceberg/*
+!warehouse/iceberg/.gitkeep

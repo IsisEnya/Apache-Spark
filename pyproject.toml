@@ -1,0 +1,14 @@
+[project]
+name = "spark-delta-iceberg-trabalho"
+version = "0.1.0"
+description = "Projeto academico com Apache Spark, Delta Lake e Apache Iceberg"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "delta-spark==3.3.2",
+    "ipykernel==6.29.5",
+    "jupyterlab==4.4.3",
+    "mkdocs==1.6.1",
+    "mkdocs-material==9.6.14",
+    "pyspark==3.5.7",
+]

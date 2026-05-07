@@ -1,21 +1,30 @@
 # Apache Spark e PySpark
 
-`Apache Spark` e um motor distribuido de processamento de dados. Ele foi criado para executar cargas analiticas com alta performance, suportando transformacoes em grande escala, SQL, streaming e machine learning.
+`Apache Spark` e o motor de processamento central deste trabalho. Ele foi responsavel por ler a fonte de dados, aplicar transformacoes, registrar visoes temporarias, executar consultas SQL e gravar os dados tanto em `Delta Lake` quanto em `Apache Iceberg`.
 
-## Por que usar Spark neste trabalho
+## O que e o Apache Spark
 
-Neste projeto, o Spark foi usado porque ele:
+O Spark e uma plataforma de processamento distribuido voltada para cargas analiticas. Mesmo quando usado localmente, como neste projeto, ele preserva a mesma logica de execucao que seria utilizada em ambientes maiores.
 
-- integra bem com `Delta Lake` e `Apache Iceberg`;
-- permite trabalhar com SQL e DataFrames;
-- simplifica testes locais em modo `local[*]`;
-- facilita a demonstracao em sala com notebooks.
+Entre suas principais capacidades, destacam-se:
 
-## Papel do PySpark
+- processamento de grandes volumes de dados;
+- uso de `DataFrames` e SQL;
+- integracao com formatos de tabela modernos;
+- execucao em notebooks e pipelines de engenharia de dados.
 
-`PySpark` e a API Python do Apache Spark. Ele permite criar `SparkSession`, carregar arquivos, transformar colunas, executar consultas SQL e escrever tabelas.
+## Papel do PySpark neste projeto
 
-Exemplo de inicio de sessao:
+`PySpark` e a interface Python do Spark. Foi por meio dela que o projeto:
+
+- criou as `SparkSession`;
+- leu o arquivo `data/vendas.csv`;
+- converteu tipos de dados;
+- criou visoes temporarias;
+- executou consultas SQL;
+- gravou tabelas em formatos analiticos diferentes.
+
+Exemplo de inicializacao:
 
 ```python
 from pyspark.sql import SparkSession
@@ -28,9 +37,13 @@ spark = (
 )
 ```
 
+## Por que usar Spark neste trabalho
+
+O Spark foi escolhido porque permite comparar `Delta Lake` e `Apache Iceberg` sobre a mesma base, no mesmo ambiente e com comandos muito parecidos. Isso torna a demonstracao mais justa e mais facil de explicar.
+
 ## Fonte usada
 
-O arquivo `data/vendas.csv` funciona como camada de entrada. Depois da leitura, a base pode ser reutilizada tanto no notebook de Delta Lake quanto no notebook de Iceberg.
+O projeto utiliza o arquivo `data/vendas.csv` como camada de entrada. A partir dessa base, os dados sao preparados para que possam ser usados tanto no notebook de Delta quanto no notebook de Iceberg.
 
 Exemplo de leitura:
 
@@ -46,17 +59,20 @@ df = (
 
 Antes de gravar os dados em tabelas analiticas, o projeto padroniza os tipos das colunas:
 
-- `id_venda` como `BIGINT`;
-- `id_cliente` e `id_produto` como `INT`;
-- `data_venda` como `DATE`;
-- `quantidade` como `INT`;
-- `preco_unitario` como `DOUBLE`.
+| Coluna | Tipo aplicado |
+| --- | --- |
+| `id_venda` | `BIGINT` |
+| `id_cliente` | `INT` |
+| `id_produto` | `INT` |
+| `data_venda` | `DATE` |
+| `quantidade` | `INT` |
+| `preco_unitario` | `DOUBLE` |
 
-Essas conversoes evitam ambiguidades e deixam os exemplos SQL mais proximos de um ambiente real.
+Essas transformacoes sao importantes porque deixam os exemplos SQL mais proximos de um cenario real e evitam ambiguidade de tipos.
 
 ## Modelo relacional proposto
 
-O trabalho parte de um CSV unico, mas o modelo de negocio foi descrito com tres tabelas:
+Embora a fonte seja um CSV unico, o trabalho foi modelado com tres entidades principais:
 
 ```sql
 CREATE TABLE clientes (
@@ -83,13 +99,24 @@ CREATE TABLE vendas (
 );
 ```
 
+## Fluxo do Spark no projeto
+
+O papel do Spark pode ser resumido neste encadeamento:
+
+1. ler o CSV;
+2. aplicar tipagem;
+3. disponibilizar os dados para analise;
+4. criar tabelas analiticas;
+5. executar comandos de manutencao e consultas de evidencia.
+
 ## Vantagens do Spark para a apresentacao
 
 - uma mesma base alimenta Delta e Iceberg;
 - a mesma linguagem SQL pode ser reaproveitada;
 - as diferencas de configuracao ficam evidentes;
-- a execucao local cabe em uma demonstracao curta.
+- a execucao local cabe em uma demonstracao curta;
+- o ambiente combina bem com notebooks para apresentacao.
 
 ## Observacao para Windows
 
-Em ambientes Windows, o PySpark pode exigir `HADOOP_HOME` com `winutils.exe`. Por isso, o projeto reserva a pasta local `windows-hadoop/bin/` e inclui um script PowerShell para iniciar o Jupyter com essa configuracao quando o arquivo estiver presente.
+Em ambientes Windows, o PySpark pode exigir `HADOOP_HOME`, `hadoop.home.dir` e acesso ao `winutils.exe`. Por isso, o projeto inclui scripts auxiliares para baixar o binario e iniciar o Jupyter com a configuracao correta.

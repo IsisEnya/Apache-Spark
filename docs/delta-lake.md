@@ -1,10 +1,19 @@
 # Delta Lake
 
-`Delta Lake` adiciona recursos de confiabilidade sobre arquivos em data lake, como transacoes ACID, historico de versoes e operacoes de atualizacao e exclusao com semantica transacional.
+`Delta Lake` foi utilizado neste projeto como exemplo de tabela analitica com forte integracao ao ecossistema Spark. Seu principal destaque na demonstracao foi a capacidade de manter operacoes transacionais e historico de alteracoes sobre arquivos em data lake.
+
+## O que o Delta Lake adiciona
+
+Ao usar Delta Lake, o projeto passa a contar com:
+
+- transacoes ACID sobre arquivos;
+- suporte nativo a `INSERT`, `UPDATE` e `DELETE`;
+- historico de versoes da tabela;
+- maior confiabilidade em operacoes de escrita.
 
 ## Configuracao usada no projeto
 
-No notebook de Delta, a sessao Spark e configurada com a extensao oficial do Delta e com o catalogo Delta para o `spark_catalog`.
+No notebook de Delta, a `SparkSession` recebe a extensao oficial do Delta e o catalogo apropriado para o `spark_catalog`.
 
 ```python
 from delta import configure_spark_with_delta_pip
@@ -21,9 +30,19 @@ builder = (
 spark = configure_spark_with_delta_pip(builder).getOrCreate()
 ```
 
-## Tabela usada
+## Estrutura usada na demonstracao
 
-O notebook cria uma tabela Delta no diretorio local `warehouse/delta/vendas_delta`. Depois disso, os dados do CSV sao inseridos nessa estrutura.
+O notebook cria uma tabela Delta no diretorio local `warehouse/delta/vendas_delta`. A tabela e inicializada com os dados da base de vendas, e depois recebe comandos de manutencao diretamente em SQL.
+
+## Fluxo executado no notebook
+
+1. leitura do arquivo CSV;
+2. conversao dos tipos das colunas;
+3. criacao da tabela Delta;
+4. insercao de um novo registro;
+5. atualizacao de um registro existente;
+6. exclusao de um registro;
+7. consulta ao historico da tabela.
 
 ## Exemplo de INSERT
 
@@ -66,12 +85,22 @@ Depois das operacoes, o notebook mostra:
 - o estado inicial da tabela;
 - o registro inserido;
 - o registro atualizado;
-- o registro removido;
+- a ausencia do registro removido;
 - o historico da tabela com `DESCRIBE HISTORY`.
 
-## Pontos fortes do Delta Lake
+## Por que isso e importante
 
-- transacoes ACID sobre arquivos;
-- comandos `UPDATE` e `DELETE` de forma nativa;
-- historico de operacoes;
-- boa integracao com o ecossistema Spark.
+No contexto do trabalho, essas evidencias demonstram que o Delta Lake nao funciona apenas como armazenamento de dados, mas como uma camada transacional capaz de registrar alteracoes e facilitar auditoria.
+
+## Pontos fortes observados
+
+| Aspecto | Evidencia no projeto |
+| --- | --- |
+| Escrita transacional | `INSERT`, `UPDATE` e `DELETE` executados com SQL |
+| Historico | `DESCRIBE HISTORY` |
+| Integracao com Spark | Configuracao direta na `SparkSession` |
+| Facilidade de demonstracao | Fluxo curto e claro em notebook |
+
+## Sintese
+
+No trabalho, o Delta Lake se destacou como a opcao mais direta para demonstrar manutencao transacional de dados e historico de operacoes dentro do Apache Spark.

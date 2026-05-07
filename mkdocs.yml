@@ -3,6 +3,10 @@ site_description: Documentacao do trabalho academico com PySpark, Delta Lake e A
 theme:
   name: material
   language: pt-BR
+  features:
+    - navigation.tabs
+    - navigation.top
+    - content.code.copy
 
 nav:
   - Inicio: index.md

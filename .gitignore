@@ -1,6 +1,7 @@
 .venv/
 __pycache__/
 .ipynb_checkpoints/
+*.executed.ipynb
 .pytest_cache/
 .mypy_cache/
 site/
@@ -12,3 +13,5 @@ warehouse/delta/*
 !warehouse/delta/.gitkeep
 warehouse/iceberg/*
 !warehouse/iceberg/.gitkeep
+windows-hadoop/bin/*.exe
+windows-hadoop/bin/*.dll

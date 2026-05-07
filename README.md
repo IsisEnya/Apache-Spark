@@ -70,6 +70,12 @@ Se voce estiver em Windows, coloque o arquivo abaixo neste caminho:
 windows-hadoop/bin/winutils.exe
 ```
 
+Para automatizar esse passo nesta maquina, use:
+
+```powershell
+.\scripts\baixar_winutils.ps1
+```
+
 Depois disso, use o script abaixo para iniciar o Jupyter com as variaveis locais configuradas:
 
 ```powershell
@@ -171,6 +177,28 @@ O comando `mkdocs gh-deploy` cria ou atualiza a branch `gh-pages`, que pode ser 
 ## Script auxiliar para Windows
 
 O arquivo [scripts/iniciar_jupyter.ps1](scripts/iniciar_jupyter.ps1) tenta usar automaticamente um `winutils.exe` local em `windows-hadoop/bin/`. Isso ajuda a reduzir problemas de ambiente durante a apresentacao.
+
+Quando o arquivo estiver presente, o script configura:
+
+- `HADOOP_HOME`
+- `hadoop.home.dir`
+- `PATH` com `windows-hadoop/bin`
+
+O arquivo [scripts/baixar_winutils.ps1](scripts/baixar_winutils.ps1) baixa `winutils.exe` e `hadoop.dll` para uso local no Windows. Ele usa um repositório comunitario, por isso os binarios estao ignorados no Git e nao precisam ser publicados no repositório do trabalho.
+
+## Validacao rapida do projeto
+
+Se voce quiser conferir se o projeto continua funcionando antes da apresentacao, execute:
+
+```powershell
+.\scripts\validar_projeto.ps1
+```
+
+Esse script:
+
+- configura o ambiente Windows para o Spark;
+- executa os 3 notebooks em modo automatizado;
+- reconstrói o site do `MKDocs`.
 
 ## Dependencias principais
 
